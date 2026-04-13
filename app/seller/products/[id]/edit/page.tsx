@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
-import { categoryTaxonomy, type CategoryAttribute } from "@/lib/category-taxonomy"
+import { categories, type CategoryAttribute } from "@/lib/category-taxonomy"
 import { DynamicAttributeField } from "@/components/seller/products/dynamic-attribute-field"
 import { ImageUploader } from "@/components/seller/products/image-uploader"
 import { TagsInput } from "@/components/seller/products/tags-input"
@@ -191,7 +191,7 @@ export default function EditProductPage() {
   }, [params.id])
 
   // Get category and subcategory data
-  const selectedCategory = categoryTaxonomy.find(c => c.id === formData.categoryId)
+  const selectedCategory = categories.find(c => c.id === formData.categoryId)
   const selectedSubcategory = selectedCategory?.subcategories.find(s => s.id === formData.subcategoryId)
   const categoryAttributes = selectedSubcategory?.attributes || selectedCategory?.commonAttributes || []
 
@@ -448,7 +448,7 @@ export default function EditProductPage() {
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {categoryTaxonomy.map((category) => (
+                          {categories.map((category) => (
                             <SelectItem key={category.id} value={category.id}>
                               <span className="mr-2">{category.icon}</span>
                               {category.name}
