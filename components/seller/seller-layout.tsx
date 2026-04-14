@@ -40,7 +40,7 @@ interface NavItem {
 const mainNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/seller/dashboard', icon: LayoutDashboard },
   { label: 'Products', href: '/seller/products', icon: Package, badge: 12 },
-  { label: 'Orders', href: '/seller/orders', icon: ShoppingCart, badge: 3, disabled: true },
+  { label: 'Orders', href: '/seller/orders', icon: ShoppingCart, badge: 3 },
   { label: 'Payments', href: '/seller/payments', icon: Wallet, disabled: true },
 ]
 
@@ -301,6 +301,7 @@ function getPageTitle(pathname: string): string {
   if (pathname.includes('/products/new')) return 'Add New Product'
   if (pathname.includes('/products/')) return 'Edit Product'
   if (pathname.includes('/products')) return 'Products'
+  if (pathname.match(/\/orders\/[^/]+$/)) return 'Order Details'
   if (pathname.includes('/orders')) return 'Orders'
   if (pathname.includes('/payments')) return 'Payments'
   if (pathname.includes('/profile')) return 'Profile'
